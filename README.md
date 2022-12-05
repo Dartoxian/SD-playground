@@ -5,7 +5,8 @@
 
 ### Running native
 
-3. Install poetry: ```
+3. Install poetry:
+```
 sudo apt update
 sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
 wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
@@ -18,7 +19,7 @@ python3.10 --version
 curl -sSL https://install.python-poetry.org | python3 -
 export PATH="/home/ben/.local/bin:$PATH"
 ```
-4. Setup a new poetry project with `poetry init --python=3.10`
+5. Setup a new poetry project with `poetry init --python=3.10`
 5. `poetry shell`
 6. `pip install imaginAIry`
 7. `imagine "a forest"`
@@ -32,7 +33,9 @@ git clone https://github.com/brycedrennan/imaginAIry.git
 cd imaginAIry/
 docker build . -t imaginairy
 cd ../
-docker run -it --gpus all -v $HOME/.cache/huggingface:/root/.cache/huggingface -v $HOME/.cache/torch:/root/.cache/torch -v `pwd`/outputs:/outputs imaginairy /bin/bash
+mkdir imagine
+touch imagine/bash_history
+docker run -it --gpus all -v $HOME/imagine/bash_history:/root/.bash_history -v $HOME/.cache/huggingface:/root/.cache/huggingface -v $HOME/.cache/torch:/root/.cache/torch -v `pwd`/outputs:/outputs imaginairy /bin/bash
 imagine --model SD-2.0 'a forest'
 ```
 
